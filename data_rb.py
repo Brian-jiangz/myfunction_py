@@ -11,7 +11,8 @@
 # Email:jiangzheng@qdio.ac.cn
 ################################
 
-''' The purpose of this snippet is to '''
+''' The purpose of this snippet is to read the binary data from
+the output of HCM-AOPB'''
 
 
 import numpy as np
