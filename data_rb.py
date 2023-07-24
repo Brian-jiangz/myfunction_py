@@ -1,8 +1,3 @@
-#!/usr/bin/env python
-# coding: utf-8
-
-# In[2]:
-
 ################################
 # This is a personal information
 # Establish time:2023-05-07
