@@ -14,7 +14,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns 
 
-def show_basic_infor(data):
+def show_basic_infor(data,info):
     # 自定义函数，输入变量，通过函数输出变量的基本信息，并以统计图象和表格的形式输出
     
     # 输入参数：
@@ -32,14 +32,17 @@ def show_basic_infor(data):
     # data_null:变量的空值
     
     # 分配变量
+    data_raw = data["raw"]["dataset"]
     
     # 获取变量的基本信息
-    if not isinstance(merge_data_3d, np.ndarray):
-            merge_data_3d = np.array(merge_data_3d)
+    if not isinstance(data["raw"]["dataset"], np.ndarray):
+        data_2d = np.array(data["raw"]["dataset"])
+    else:
+            data_2d = data["raw"]["dataset"]
             
     # 获取变量的维度
-    data_shape = merge_data_3d.shape
-    data_frame = np.transpose(merge_data_3d)
+    data_shape = data_2d.shape
+    data_frame = np.transpose(data_2d)
         
     # dataframe转化
     data_frame = pd.DataFrame(data_frame,columns=[f"Time {i+1}" for i in data_frame[0]])
@@ -51,3 +54,12 @@ def show_basic_infor(data):
     ## 绘制空缺值图像
     plt.figure(figsize=(8,6))
     sns.heatmap(data_frame.isnull(),cbar=False,cmap='viridis')
+    plt.title('Missing values in the data')
+    plt.show()
+    
+    ## 绘制一个时间点的数据分布图像
+    plt.figure(figsize=(8,6))
+    x=np.array(0,91)
+    y=np.array(0,161)
+    X,Y = np.meshgrid(x,y)
+    plt.contour(X,Y,data)
